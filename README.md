@@ -17,4 +17,11 @@ python  gerund.py  fibonacci
 python  gerund.py 'define incr 1 adding'  '3 9 adding incr'
 ```
 
-( The version I actually used on Google Glass is in https://github.com/strickyak/mirror-happiness )
+##Links
+
+* The version I actually used on Google Glass is in https://github.com/strickyak/mirror-happiness
+
+* More about Gerund's main inspirations:
+  [https://www.google.com/search?q=joy+programming+language](Joy)
+  and
+  [https://www.google.com/search?q=forth+programming+language](FORTH)
