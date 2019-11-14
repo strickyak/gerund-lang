@@ -77,9 +77,9 @@ class Gerund(object):
       with open(ingfile) as fd:
         guts = fd.read()
         try:
-          logging.info('Compiling %s = %s', word, guts)
+          #logging.info('Compiling %s = %s', word, guts)
           cc = self.Compile(Chop(guts))
-          logging.info('Compiled %s = %s', word, cc)
+          #logging.info('Compiled %s = %s', word, cc)
           f = self.LambdaToEvalCompiledWords(cc)
           setattr(self, word, f)
           self.words[word] = cc
@@ -106,7 +106,7 @@ class Gerund(object):
       s = NONALFA.sub(' ', s)
       s = s.lower()
       ww = [str(x) for x in s.split(' ') if x not in STOPS]
-      logging.info('WORDS = %s', ww)
+      #logging.info('WORDS = %s', ww)
   
       if len(ww) > 1 and ww[0]=='define':
         rest = ww[1:]
@@ -152,9 +152,9 @@ class Gerund(object):
         self.Reset()
         self.stack = []
         comp = self.Compile(ww)
-        logging.info('COMPILE = %s', comp)
+        #logging.info('COMPILE = %s', comp)
         self.Eval(comp)
-        logging.info('STACK = %s', self.stack)
+        #logging.info('STACK = %s', self.stack)
         return tuple(self.stack + ['ticks=%d' % (self.max_ticks - self.ticks)] )
     except Exception as ex:
       traceback.print_exc()
