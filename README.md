@@ -15,6 +15,9 @@ python  gerund.py  list
 python  gerund.py  fibonacci
 
 python  gerund.py 'define incr 1 adding'  '3 9 adding incr'
+
+python  gerund.py 'define priming duplicating counting opening getting2 swapping modulo 0 equaling closing mapping summing 2 equaling swapping popping' '100 counting opening priming closing filtering'
+
 ```
 
 ##Links
