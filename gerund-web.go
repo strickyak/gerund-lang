@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"html/template"
 	"log"
+	"regexp"
 	"net/http"
 	"os/exec"
 	"strings"
@@ -20,6 +21,8 @@ func main() {
 	http.HandleFunc("/", Service)
 	http.ListenAndServe(*listenFlag, nil)
 }
+
+var TRIANGLE_PATTERN = regexp.MustCompile("{TRIANGLES=(.*?)}")
 
 func Service(w http.ResponseWriter, r *http.Request) {
 	defer func() {
@@ -41,9 +44,16 @@ func Service(w http.ResponseWriter, r *http.Request) {
 		result = fmt.Sprintf("ERROR: %v: %s", err, result)
 	}
 
+	triangle := ""
+	m := TRIANGLE_PATTERN.FindStringSubmatch(result)
+	if m != nil {
+		triangle = m[1]
+	}
+
 	d := map[string]string{
 		"Text": "",
 		"Pre":  result,
+		"Triangle": triangle,
 	}
 	pageTemplate.Execute(w, d)
 }
@@ -62,6 +72,11 @@ const PAGE = `
     <table cellpadding=20 border=1><tr><td>
       <tt><div style="white-space: pre-wrap;">{{.Pre}}</div></tt>
     </table>
+
+    {{ if .Triangle }}
+      <br>
+      <img src="http://node1.yak.net:2018/{{.Triangle}}">
+    {{ end }}
 
   </body>
 `

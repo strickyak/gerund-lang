@@ -854,4 +854,21 @@ if __name__ == '__main__':
   h = Gerund(dirname='.')
   for a in sys.argv[1:]:
     print '<<< ' + repr(a)
-    print '>>> ' + repr(h.Run(a))
+    answer = h.Run(a)
+    print '>>> ' + repr(answer)
+
+    # If the result as a list of 9tuples of numbers,
+    # display the TRIANGLES url.
+    try:
+      stack, result = answer
+      result = stack[-1]
+
+      if all(len(e) == 9 for e in result):
+        url = ""
+        for b in result:
+          for c in b:
+            url += "%d," % int(c + 0.5)
+        print "{TRIANGLES=%s}" % url
+
+    except Exception as ex:
+      pass
