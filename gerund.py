@@ -860,8 +860,7 @@ if __name__ == '__main__':
     # If the result as a list of 9tuples of numbers,
     # display the TRIANGLES url.
     try:
-      stack, result = answer
-      result = stack[-1]
+      result = answer[-2]  # ticks count is last.
 
       if all(len(e) == 9 for e in result):
         url = ""
